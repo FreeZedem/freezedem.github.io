@@ -115,6 +115,21 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
@@ -170,9 +185,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-03-21 16:50:49 / 修改时间：16:53:26" itemprop="dateCreated datePublished" datetime="2023-03-21T16:50:49+08:00">2023-03-21</time>
+              <time title="创建时间：2023-03-21 16:50:49" itemprop="dateCreated datePublished" datetime="2023-03-21T16:50:49+08:00">2023-03-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-25 10:03:05" itemprop="dateModified" datetime="2023-03-25T10:03:05+08:00">2023-03-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">编程学习笔记</span></a>
+                </span>
             </span>
 
           
@@ -190,14 +220,21 @@
 <h1 id="正文部分"><a href="#正文部分" class="headerlink" title="正文部分"></a>正文部分</h1><h2 id="git全局设置"><a href="#git全局设置" class="headerlink" title="git全局设置"></a>git全局设置</h2><p>git 全局设定设置用户名和邮箱。因为git是分布式的版本控制器，版本库和工作目录树都是放在同一个目录下，以便联系修改者。</p>
 <p>而git的版本控制是乐观锁而非严格锁，追溯修改的记录是非常严肃的事情，所以有个git一开始就要设置好自己提交的身份。</p>
 <p>其中版本库往往存储本地仓库的.git目录当中。</p>
-<p><code>git config --global user.name &quot;username&quot;</code></p>
-<p><code>git config --global user.email &quot;userEmail@xx.com&quot;</code></p>
-<h2 id="git的基本命令"><a href="#git的基本命令" class="headerlink" title="git的基本命令"></a>git的基本命令</h2><p><code>git init //初始化一个git项目，并新建一个版本库</code></p>
+<pre><code>git config --global user.name &quot;username&quot; //用户名
+
+git config --global user.email &quot;userEmail@xx.com&quot; //用户邮箱
+</code></pre>
+<h2 id="git的基本命令"><a href="#git的基本命令" class="headerlink" title="git的基本命令"></a>git的基本命令</h2><pre><code>git init //初始化一个git项目，并新建一个版本库
+</code></pre>
 <p>.git当中的版本库，一般是用来记录和跟踪该项目的代码。</p>
-<p><code>git log -numbaer //number为数字给git log 版本库进行消息限制</code></p>
-<p><code>git status //为工作目录树和版本库之间的缓存区域，也就是索引，我们一般称为“暂存区”</code></p>
-<p><code>git add //提交文件暂存对文件的修改</code></p>
-<p><code>git commit -m //提交修改的缘由，并且写好备注是一个艺术，如果输入“\”可以多行输入。</code></p>
+<pre><code>git log -numbaer //number为数字给git log 版本库进行消息限制
+
+git status //为工作目录树和版本库之间的缓存区域，也就是索引，我们一般称为“暂存区”
+
+git add //提交文件暂存对文件的修改
+
+git commit -m //提交修改的缘由，并且写好备注是一个艺术，如果输入“\”可以多行输入。
+</code></pre>
 
       
     </div>
@@ -283,9 +320,17 @@
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
-      <div class="site-state-item site-state-tags">
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">标签</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
