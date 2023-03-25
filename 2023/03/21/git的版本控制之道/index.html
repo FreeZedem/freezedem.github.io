@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"gitalk":null,"enable":true,"github_id":"FreeZedem","repo":"freezedem.github.io","client_id":"f23cae94e428643c86de","client_secret":"4ff68a3e06720e86bab50812995f736ff7e0c800","admin_user":"FreeZedem","distraction_free_mode":false,"language":"zh-CN"}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="前言说明这是在阅读《版本控制之道 使用git》的笔记，主要是记录一些命令和对其的理解，结束笔记的时候会写一个小结，来大致描述这样一种模型的存在，以下是正文部分。 正文部分git全局设置git 全局设定设置用户名和邮箱。因为git是分布式的版本控制器，版本库和工作目录树都是放在同一个目录下，以便联系修改者。 而git的版本控制是乐观锁而非严格锁，追溯修改的记录是非常严肃的事情，所以有个git一开始就">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git的版本控制之道">
+<meta property="og:title" content="git的版本控制之道(更新中)">
 <meta property="og:url" content="http://example.com/2023/03/21/git%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E4%B9%8B%E9%81%93/index.html">
 <meta property="og:site_name" content="泽博的个人博客">
 <meta property="og:description" content="前言说明这是在阅读《版本控制之道 使用git》的笔记，主要是记录一些命令和对其的理解，结束笔记的时候会写一个小结，来大致描述这样一种模型的存在，以下是正文部分。 正文部分git全局设置git 全局设定设置用户名和邮箱。因为git是分布式的版本控制器，版本库和工作目录树都是放在同一个目录下，以便联系修改者。 而git的版本控制是乐观锁而非严格锁，追溯修改的记录是非常严肃的事情，所以有个git一开始就">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-21T08:50:49.000Z">
-<meta property="article:modified_time" content="2023-03-25T02:03:05.423Z">
+<meta property="article:modified_time" content="2023-03-25T03:36:30.302Z">
 <meta property="article:author" content="Freezelook">
 <meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>git的版本控制之道 | 泽博的个人博客</title>
+  <title>git的版本控制之道(更新中) | 泽博的个人博客</title>
   
 
 
@@ -118,9 +118,9 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-categories">
 
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -128,14 +128,14 @@
     <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
   </ul>
@@ -179,7 +179,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          git的版本控制之道
+          git的版本控制之道(更新中)
         </h1>
 
         <div class="post-meta">
@@ -196,7 +196,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-25 10:03:05" itemprop="dateModified" datetime="2023-03-25T10:03:05+08:00">2023-03-25</time>
+                <time title="修改时间：2023-03-25 11:36:30" itemprop="dateModified" datetime="2023-03-25T11:36:30+08:00">2023-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -419,6 +419,27 @@ git commit -m //提交修改的缘由，并且写好备注是一个艺术，如�
 
 
 
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '',
+      clientSecret: '',
+      repo        : '',
+      owner       : '',
+      admin       : [''],
+      id          : '3be7aa98d992907175cbd79c194399f2',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 
   
