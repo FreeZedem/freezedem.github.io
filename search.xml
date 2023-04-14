@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>git的版本控制之道(更新中)</title>
+    <url>/2023/03/21/git%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E4%B9%8B%E9%81%93/</url>
+    <content><![CDATA[<h1 id="前言说明"><a href="#前言说明" class="headerlink" title="前言说明"></a>前言说明</h1><p>这是在阅读《版本控制之道 使用git》的笔记，主要是记录一些命令和对其的理解，结束笔记的时候会写一个小结，来大致描述这样一种模型的存在，以下是正文部分。</p>
+<h1 id="正文部分"><a href="#正文部分" class="headerlink" title="正文部分"></a>正文部分</h1><h2 id="git全局设置"><a href="#git全局设置" class="headerlink" title="git全局设置"></a>git全局设置</h2><p>git 全局设定设置用户名和邮箱。因为git是分布式的版本控制器，版本库和工作目录树都是放在同一个目录下，以便联系修改者。</p>
+<p>而git的版本控制是乐观锁而非严格锁，追溯修改的记录是非常严肃的事情，所以有个git一开始就要设置好自己提交的身份。</p>
+<p>其中版本库往往存储本地仓库的.git目录当中。</p>
+<pre><code>git config --global user.name &quot;username&quot; //用户名
+
+git config --global user.email &quot;userEmail@xx.com&quot; //用户邮箱
+</code></pre>
+<h2 id="git的基本命令"><a href="#git的基本命令" class="headerlink" title="git的基本命令"></a>git的基本命令</h2><pre><code>git init //初始化一个git项目，并新建一个版本库
+</code></pre>
+<p>.git当中的版本库，一般是用来记录和跟踪该项目的代码。</p>
+<pre><code>git log -numbaer //number为数字给git log 版本库进行消息限制
+
+git status //为工作目录树和版本库之间的缓存区域，也就是索引，我们一般称为“暂存区”
+
+git add //提交文件暂存对文件的修改
+
+git commit -m //提交修改的缘由，并且写好备注是一个艺术，如果输入“\”可以多行输入。
+</code></pre>
+]]></content>
+      <categories>
+        <category>编程学习笔记</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>未来态</title>
+    <url>/2023/04/12/%E6%9C%AA%E6%9D%A5%E6%80%81/</url>
+    <content><![CDATA[<h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>很少感觉到的激情在我沉寂已久心理的迸发出来，这是我继感受名与实的困惑又一次的超越。<br>我觉得未来态，将会出现，这将是我所求的一个生活态度。</p>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p>未来态是一种创新和变革的未来主义，拥抱他的人将会拥有全新的生活态度。<br>这种生活态度，这种状态，我称之为未来态。<br>以一种全新开放的态度迎接未来生活。<br>第一就是信息的完备，信息是未来态这种生活态度的基石，没有充足的信息，就无法正确的理解事物。<br>第二是理解信息，如果不能够处理繁多的信息，就会提炼不出未来态。<br>第三是建立图景，要便捷的绘画在脑内，在多种感官，在繁多当中找到自己最喜欢的模型，最优美的图案。<br>第四是选择，这将是最煎熬的时刻，意味着你将踏入未来态。<br>第五是理所当然的行动。</p>
+]]></content>
+      <categories>
+        <category>思考</category>
+      </categories>
+      <tags>
+        <tag>思考</tag>
+      </tags>
+  </entry>
+</search>
