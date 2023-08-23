@@ -11,7 +11,7 @@
 <li><a href="https://github.phodal.com/#/">GitHub 漫游指南</a></li>
 <li><a href="https://oschina.gitee.io/opensource-guide/">开源指北</a></li>
 <li><a href="https://git-scm.com/book/zh/v2">Git官方文档</a></li>
-<li><a href="https://docs.github.com/zh">GitHub官方文档</a></li>
+<li><a href="https://docs.github.com/zh">GitHub官方文档</a><span id="more"></span></li>
 </ul>
 <h1 id="内容叙述"><a href="#内容叙述" class="headerlink" title="内容叙述"></a>内容叙述</h1><h2 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h2><p>Git是一个分布式版本管理系统，是为了更好地管理Linux内核开发而创立的。<br>用Git管理文件，更新的历史会保存在Git。<br>如果和别人共享文件修改时有冲突，会发出报错警告。  </p>
 <h2 id="Git的数据库"><a href="#Git的数据库" class="headerlink" title="Git的数据库"></a>Git的数据库</h2><p>数据库 (Repository) 是记录文件或目录状态的地方，存储着内容修改的历史记录。<br>Git的数据库分为远程数据库和本地数据库的两种。<br>远程数据库和本地数据库的交流为pull和push。<br>其中：创建本地数据库的方法有两种：一种是创建全新的数据库，另一种是复制远程数据库。<br>提交到远程数据库为了方便协同合作，务必输入准确简洁的提交信息，遵循下列Git的标准注解原则：</p>
