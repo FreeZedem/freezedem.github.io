@@ -199,7 +199,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/22/git%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E4%B9%8B%E9%81%93/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/22/%E5%AD%A6%E4%B9%A0git%E7%9A%84%E5%8F%99%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/miku_img.png">
@@ -213,7 +213,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/22/git%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E4%B9%8B%E9%81%93/" class="post-title-link" itemprop="url">git的版本控制之道(更新中)</a>
+            <a href="/2023/08/22/%E5%AD%A6%E4%B9%A0git%E7%9A%84%E5%8F%99%E8%BF%B0/" class="post-title-link" itemprop="url">学习git的叙述（更新中）</a>
         </h2>
 
         <div class="post-meta">
@@ -222,10 +222,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-08-22 16:50:49 / 修改时间：16:54:26" itemprop="dateCreated datePublished" datetime="2023-08-22T16:50:49+08:00">2023-08-22</time>
+              <time title="创建时间：2023-08-22 17:17:25" itemprop="dateCreated datePublished" datetime="2023-08-22T17:17:25+08:00">2023-08-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-08-23 09:18:29" itemprop="dateModified" datetime="2023-08-23T09:18:29+08:00">2023-08-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -245,8 +251,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2023/08/22/git%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E4%B9%8B%E9%81%93/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/08/22/git%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E4%B9%8B%E9%81%93/" itemprop="commentCount"></span>
+    <a title="valine" href="/2023/08/22/%E5%AD%A6%E4%B9%A0git%E7%9A%84%E5%8F%99%E8%BF%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/08/22/%E5%AD%A6%E4%B9%A0git%E7%9A%84%E5%8F%99%E8%BF%B0/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -261,26 +267,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="前言说明"><a href="#前言说明" class="headerlink" title="前言说明"></a>前言说明</h1><p>这是在阅读《版本控制之道 使用git》的笔记，主要是记录一些命令和对其的理解，结束笔记的时候会写一个小结，来大致描述这样一种模型的存在，以下是正文部分。</p>
-<h1 id="正文部分"><a href="#正文部分" class="headerlink" title="正文部分"></a>正文部分</h1><h2 id="git全局设置"><a href="#git全局设置" class="headerlink" title="git全局设置"></a>git全局设置</h2><p>git 全局设定设置用户名和邮箱。因为git是分布式的版本控制器，版本库和工作目录树都是放在同一个目录下，以便联系修改者。</p>
-<p>而git的版本控制是乐观锁而非严格锁，追溯修改的记录是非常严肃的事情，所以有个git一开始就要设置好自己提交的身份。</p>
-<p>其中版本库往往存储本地仓库的.git目录当中。</p>
-<pre><code>git config --global user.name &quot;username&quot; //用户名
+          <h1 id="前言说明"><a href="#前言说明" class="headerlink" title="前言说明"></a>前言说明</h1><p>根据以下资料自学，</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://backlog.com/git-tutorial/cn/">猴子都能懂的Git入门</a></li>
+<li><a target="_blank" rel="noopener" href="https://learngitbranching.js.org/?locale=zh_CN">Learning Git Branching 在线游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/zh/get-started">GitHub 入门文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.phodal.com/#/">GitHub 漫游指南</a></li>
+<li><a target="_blank" rel="noopener" href="https://oschina.gitee.io/opensource-guide/">开源指北</a></li>
+<li><a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2">Git官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/zh">GitHub官方文档</a></li>
+</ul>
+<h1 id="内容叙述"><a href="#内容叙述" class="headerlink" title="内容叙述"></a>内容叙述</h1><h2 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h2><p>Git是一个分布式版本管理系统，是为了更好地管理Linux内核开发而创立的。<br>用Git管理文件，更新的历史会保存在Git。<br>如果和别人共享文件修改时有冲突，会发出报错警告。  </p>
+<h2 id="Git的数据库"><a href="#Git的数据库" class="headerlink" title="Git的数据库"></a>Git的数据库</h2><p>数据库 (Repository) 是记录文件或目录状态的地方，存储着内容修改的历史记录。<br>Git的数据库分为远程数据库和本地数据库的两种。<br>远程数据库和本地数据库的交流为pull和push。<br>其中：创建本地数据库的方法有两种：一种是创建全新的数据库，另一种是复制远程数据库。<br>提交到远程数据库为了方便协同合作，务必输入准确简洁的提交信息，遵循下列Git的标准注解原则：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第1行：提交修改内容的摘要</span><br><span class="line">第2行：空行</span><br><span class="line">第3行以后：修改的理由</span><br></pre></td></tr></table></figure>
 
-git config --global user.email &quot;userEmail@xx.com&quot; //用户邮箱
-</code></pre>
-<h2 id="git的基本命令"><a href="#git的基本命令" class="headerlink" title="git的基本命令"></a>git的基本命令</h2><pre><code>git init //初始化一个git项目，并新建一个版本库
-</code></pre>
-<p>.git当中的版本库，一般是用来记录和跟踪该项目的代码。</p>
-<pre><code>git log -numbaer //number为数字给git log 版本库进行消息限制
-
-git status //为工作目录树和版本库之间的缓存区域，也就是索引，我们一般称为“暂存区”
-
-git add //提交文件暂存对文件的修改
-
-git commit -m //提交修改的缘由，并且写好备注是一个艺术，如果输入“\”可以多行输入。
-</code></pre>
-
+<h2 id="工作树和索引"><a href="#工作树和索引" class="headerlink" title="工作树和索引"></a>工作树和索引</h2><p>在Git管理下，大家实际操作的目录被称为工作树。<br>在数据库和工作树之间有索引，索引是为了向数据库提交作准备的区域。<br>凭借中间的索引，可以避免工作树中不必要的文件提交，还可以将文件修改内容的一部分加入索引区域并提交。</p>
+<h2 id="实操的提前准备"><a href="#实操的提前准备" class="headerlink" title="实操的提前准备"></a>实操的提前准备</h2><p>首先安装<a target="_blank" rel="noopener" href="http://msysgit.github.io/">git</a>，再安装开放源代码的Git客户端<a target="_blank" rel="noopener" href="http://code.google.com/p/tortoisegit/">TortoiseGit</a>（有官方汉化语言包）。</p>
+<h2 id="版本库，工作树，暂存区"><a href="#版本库，工作树，暂存区" class="headerlink" title="版本库，工作树，暂存区"></a>版本库，工作树，暂存区</h2><p>版本库（Repository）： 在Git中，版本库是存储代码历史记录的地方。它包括了整个项目的历史状态、分支、标签等信息。当你执行git init命令创建一个新的版本库时，Git会在你的项目文件夹中生成一个名为.git的隐藏文件夹，这个文件夹就是版本库。</p>
+<p>工作树（Working Tree）： 工作树是你项目文件夹中的实际文件和文件夹，它反映了你当前的工作状态。在工作树中进行的文件修改、添加、删除等操作都会被记录下来，然后可以通过提交到版本库来保留这些修改。</p>
+<p>暂存区（Staging Area）： 暂存区是位于版本库和工作树之间的一个缓冲区域。当你使用git add命令将文件添加到暂存区时，你正在告诉Git这些文件将会被包含在下一次的提交中。</p>
+<p>在操作过程中，文件会从工作树添加到暂存区，然后再从暂存区提交到版本库中。这种分层结构使得Git能够记录代码的变更历史并支持版本控制。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
       
     </div>
 
