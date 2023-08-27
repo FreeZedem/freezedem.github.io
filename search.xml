@@ -101,12 +101,76 @@
 <li>用rebase -i 修改提交  #进行修改提交，需要edit</li>
 <li>merge –squash  #把分支合并提交<br>其中reset当中的参数<br>模式名称	HEAD的位置	  索引	 工作树   主要使用场合<br>soft		修改		不修改	不修改   只取消提交<br>mixed		修改		修改	不修改   复原修改过的索引的状态<br>hard		修改		修改	修改     彻底取消最近的提交</li>
 </ul>
-<h1 id="内容叙述–Learning-Git-Branching-在线游戏（在玩）"><a href="#内容叙述–Learning-Git-Branching-在线游戏（在玩）" class="headerlink" title="内容叙述–Learning Git Branching 在线游戏（在玩）"></a>内容叙述–Learning Git Branching 在线游戏（在玩）</h1>]]></content>
+<h1 id="内容叙述–Learning-Git-Branching-在线游戏（在玩）"><a href="#内容叙述–Learning-Git-Branching-在线游戏（在玩）" class="headerlink" title="内容叙述–Learning Git Branching 在线游戏（在玩）"></a>内容叙述–Learning Git Branching 在线游戏（在玩）</h1><p>游戏有如下的关卡：</p>
+<ul>
+<li>基础篇3关，</li>
+<li>高级篇3关，</li>
+<li>移动提交记录2个，</li>
+<li>杂项5个，</li>
+<li>高级话题3个，</li>
+<li>git远程仓库8个</li>
+<li>git远程仓库高级操作8个</li>
+</ul>
+<h2 id="基础篇"><a href="#基础篇" class="headerlink" title="基础篇"></a>基础篇</h2><h3 id="Git-Commit"><a href="#Git-Commit" class="headerlink" title="Git Commit"></a>Git Commit</h3><p>Git 仓库中的提交记录保存的是你的目录下所有文件的快照，就像是把整个目录复制，然后再粘贴一样，但比复制粘贴优雅许多！   </p>
+<p>Git 希望提交记录尽可能地轻量，因此在你每次进行提交时，它并不会盲目地复制整个目录。条件允许的情况下，它会将当前版本与仓库中的上一个版本进行对比，并把所有的差异打包到一起作为一个提交记录。    </p>
+<h3 id="Git-Branch"><a href="#Git-Branch" class="headerlink" title="Git Branch"></a>Git Branch</h3><p>Git 的分支也非常轻量。它们只是简单地<strong>指向</strong>某个提交纪录 —— 仅此而已。所以许多 Git 爱好者传颂：<br><strong>早建分支！多用分支！</strong><br>这是因为即使创建再多的分支也不会造成储存或内存上的开销，并且按逻辑分解工作到不同的分支要比维护那些特别臃肿的分支简单多了。</p>
+<p>注意：在 Git 2.23 版本中，引入了一个名为 git switch 的新命令，最终会取代 git checkout，因为 checkout 作为单个命令有点超载（它承载了很多独立的功能）。 由于现在很多人还无法使用 switch，本次课程仍然使用 checkout 而不是 switch， 但是如果你想尝试一下新命令，我们的应用也是支持的！并且你可以从<a href="https://git-scm.com/docs/git-switch">这里</a>学到更多关于新命令的内容。</p>
+<h3 id="Git-Merge"><a href="#Git-Merge" class="headerlink" title="Git Merge"></a>Git Merge</h3><p>太好了! 我们已经知道如何提交以及如何使用分支了。接下来咱们看看如何将两个分支合并到一起。就是说我们新建一个分支，在其上开发某个新功能，开发完成后再合并回主线。</p>
+<p>咱们先来看一下第一种方法 —— git merge。在 Git 中合并两个分支时会产生一个特殊的提交记录，它有两个 parent 节点。翻译成自然语言相当于：“我要把这两个 parent 节点本身及它们所有的祖先都包含进来。”</p>
+<h3 id="Git-Rebase"><a href="#Git-Rebase" class="headerlink" title="Git Rebase"></a>Git Rebase</h3><p>第二种合并分支的方法是 git rebase。Rebase 实际上就是取出一系列的提交记录，“复制”它们，然后在另外一个地方逐个的放下去。</p>
+<p>Rebase 的优势就是可以创造更线性的提交历史，这听上去有些难以理解。如果只允许使用 Rebase 的话，代码库的提交历史将会变得异常清晰。</p>
+<h2 id="高级篇"><a href="#高级篇" class="headerlink" title="高级篇"></a>高级篇</h2><h3 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h3><p>HEAD 是一个对当前所在分支的符号引用 —— 也就是指向你正在其基础上进行工作的提交记录。</p>
+<p>HEAD 总是指向当前分支上最近一次提交记录。大多数修改提交树的 Git 命令都是从改变 HEAD 的指向开始的。</p>
+<p>HEAD 通常情况下是指向分支名的（如 bugFix）。在你提交时，改变了 bugFix 的状态，这一变化通过 HEAD 变得可见。</p>
+<h3 id="相对引用"><a href="#相对引用" class="headerlink" title="相对引用"></a>相对引用</h3><p>通过指定提交记录哈希值的方式在 Git 中移动不太方便。在实际应用时，并没有像本程序中这么漂亮的可视化提交树供你参考，所以你就不得不用 git log 来查查看提交记录的哈希值。</p>
+<p>并且哈希值在真实的 Git 世界中也会更长（译者注：基于 SHA-1，共 40 位）。例如前一关的介绍中的提交记录的哈希值可能是 fed2da64c0efc5293610bdd892f82a58e8cbc5d8。舌头都快打结了吧…</p>
+<p>比较令人欣慰的是，Git 对哈希的处理很智能。你只需要提供能够唯一标识提交记录的前几个字符即可。因此我可以仅输入fed2 而不是上面的一长串字符。<br>正如我前面所说，通过哈希值指定提交记录很不方便，所以 Git 引入了相对引用。这个就很厉害了!</p>
+<p>使用相对引用的话，你就可以从一个易于记忆的地方（比如 bugFix 分支或 HEAD）开始计算。</p>
+<p>相对引用非常给力，这里我介绍两个简单的用法：</p>
+<p>使用 ^ 向上移动 1 个提交记录<br>使用 ~&lt; num &gt; 向上移动多个提交记录，如 ~3</p>
+<p>“~”操作符<br>如果你想在提交树中向上移动很多步的话，敲那么多 ^ 貌似也挺烦人的，Git 当然也考虑到了这一点，于是又引入了操作符 ~。</p>
+<p>该操作符后面可以跟一个数字（可选，不跟数字时与 ^ 相同，向上移动一次），指定向上移动多少次。咱们还是通过实际操作看一下吧</p>
+<h3 id="撤销变更"><a href="#撤销变更" class="headerlink" title="撤销变更"></a>撤销变更</h3><p>在 Git 里撤销变更的方法很多。和提交一样，撤销变更由底层部分（暂存区的独立文件或者片段）和上层部分（变更到底是通过哪种方式被撤销的）组成。我们这个应用主要关注的是后者。</p>
+<p>主要有两种方法用来撤销变更 —— 一是 git reset，还有就是 git revert。接下来咱们逐个进行讲解。</p>
+<p>git reset 通过把分支记录回退几个提交记录来实现撤销改动。你可以将这想象成“改写历史”。git reset 向上移动分支，原来指向的提交记录就跟从来没有提交过一样。</p>
+<p>虽然在你的本地分支中使用 git reset 很方便，但是这种“改写历史”的方法对大家一起使用的远程分支是无效的哦！</p>
+<p>为了撤销更改并分享给别人，我们需要使用 git revert。</p>
+<h2 id="移动提交记录"><a href="#移动提交记录" class="headerlink" title="移动提交记录"></a>移动提交记录</h2><h3 id="Git-Cherry-pick"><a href="#Git-Cherry-pick" class="headerlink" title="Git Cherry-pick"></a>Git Cherry-pick</h3><p>本系列的第一个命令是 git cherry-pick, 命令形式为:</p>
+<p>git cherry-pick &lt;提交号&gt;…<br>如果你想将一些提交复制到当前所在的位置（HEAD）下面的话， Cherry-pick 是最直接的方式了。我个人非常喜欢 cherry-pick，因为它特别简单。</p>
+<h3 id="交互式的-rebase"><a href="#交互式的-rebase" class="headerlink" title="交互式的 rebase"></a>交互式的 rebase</h3><p>当你知道你所需要的提交记录（并且还知道这些提交记录的哈希值）时, 用 cherry-pick 再好不过了 —— 没有比这更简单的方式了。</p>
+<p>但是如果你不清楚你想要的提交记录的哈希值呢? 幸好 Git 帮你想到了这一点, 我们可以利用交互式的 rebase —— 如果你想从一系列的提交记录中找到想要的记录, 这就是最好的方法了</p>
+<p>交互式 rebase 指的是使用带参数 –interactive 的 rebase 命令, 简写为 -i</p>
+<p>如果你在命令后增加了这个选项, Git 会打开一个 UI 界面并列出将要被复制到目标分支的备选提交记录，它还会显示每个提交记录的哈希值和提交说明，提交说明有助于你理解这个提交进行了哪些更改。</p>
+<h2 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h2><h3 id="本地栈式提交"><a href="#本地栈式提交" class="headerlink" title="本地栈式提交"></a>本地栈式提交</h3><p>来看一个在开发中经常会遇到的情况：我正在解决某个特别棘手的 Bug，为了便于调试而在代码中添加了一些调试命令并向控制台打印了一些信息。</p>
+<p>这些调试和打印语句都在它们各自的提交记录里。最后我终于找到了造成这个 Bug 的根本原因，解决掉以后觉得沾沾自喜！</p>
+<p>最后就差把 bugFix 分支里的工作合并回 main 分支了。你可以选择通过 fast-forward 快速合并到 main 分支上，但这样的话 main 分支就会包含我这些调试语句了。你肯定不想这样，应该还有更好的方式……</p>
+<p>实际我们只要让 Git 复制解决问题的那一个提交记录就可以了。跟之前我们在“整理提交记录”中学到的一样，我们可以使用</p>
+<p>git rebase -i<br>git cherry-pick<br>来达到目的。</p>
+<h3 id="提交的技巧-1"><a href="#提交的技巧-1" class="headerlink" title="提交的技巧 #1"></a>提交的技巧 #1</h3><h2 id="高级话题"><a href="#高级话题" class="headerlink" title="高级话题"></a>高级话题</h2><h2 id="git远程仓库"><a href="#git远程仓库" class="headerlink" title="git远程仓库"></a>git远程仓库</h2><h2 id="git远程仓库高级操作"><a href="#git远程仓库高级操作" class="headerlink" title="git远程仓库高级操作"></a>git远程仓库高级操作</h2>]]></content>
       <categories>
         <category>编程学习笔记</category>
       </categories>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法导论阅读笔记</title>
+    <url>/2023/08/27/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大一的时候买的书，一直说以后看，以后看，这一推就到了现在，不能再推下去了。<br>现在开始啃这本书，可以说我是抱着巨大的勇气进行的，特别决定了还要发到博客当中去监督自己的这一决心。<br>所以这个系列在表述的过程当中可能会有误，希望有大佬看到错误的地方可以私发我邮件，或则评论区指出，无论有多尖锐都请您随意发出，不用客气的批评我，这里再次表达感激之情。<br>现在让我开始啃这个巨著吧，争取做到日更。</p>
+<h1 id="第一部分-基础知识"><a href="#第一部分-基础知识" class="headerlink" title="第一部分 基础知识"></a>第一部分 基础知识</h1><h2 id="第1章-算法在计算中的作用"><a href="#第1章-算法在计算中的作用" class="headerlink" title="第1章 算法在计算中的作用"></a>第1章 算法在计算中的作用</h2><h3 id="1-1-算法"><a href="#1-1-算法" class="headerlink" title="1.1 算法"></a>1.1 算法</h3><p>算法就是任何良定义的计算过程，也可以看作是用于求解良说明的计算问题的工具。<br>良定义包含四个方面：明确性，有限性，输入和输出，可行性。<br>良说明包含五个方面：输入， 输出，约束条件，问题的性质，示例。</p>
+<p>许多有趣算法问题所共有的两个特征：<br>1.存在许多候选解<br>2.存在实际应用<br>候选解指的是：候选解是指在解决问题或完成任务时，被认为可能是正确或有效解决方案的一个潜在选择。</p>
+<p>NP完全的问题需要满足两个条件：<br>1.可证明性<br>2.NP难度</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">举例子：想象你在玩一个拼图游戏，你得到了一些拼图块，而且你需要将它们组合成一个完整的拼图。如果你把所有的拼图块正确地组合在一起，你可以很容易地看到结果是正确的。这就是“可证明性”，因为你可以验证最终拼图是否正确。    </span><br><span class="line">现在，假设你没有完整的拼图图像，而是零散地得到一块块拼图，然后需要找到一个方法将它们组合起来。NP-完全问题就类似于这种情况。它们要求你找到一个解，就像是将零散的拼图块组合在一起，以满足某些条件。这些问题很难，因为找到这种解看起来并不容易。   </span><br><span class="line">但是，如果你告诉别人你已经找到了一个可能的拼图组合方式，别人可以很快地验证它是否正确。这就是问题的“可证明性”。NP-完全问题的关键在于，如果你能够在快速的时间内验证一个可能的解，那么理论上你也可以在快速的时间内找到一个解。这就是为什么这些问题被认为是非常困难的，因为目前我们没有找到一种快速的方法来解决它们，但如果我们找到了一个解，我们可以快速地验证它是否正确。</span><br></pre></td></tr></table></figure>
+
+<p>练习:<br>1.1-1     </p>
+<h3 id="1-2-作为一种技术的算法"><a href="#1-2-作为一种技术的算法" class="headerlink" title="1.2 作为一种技术的算法"></a>1.2 作为一种技术的算法</h3>]]></content>
+      <categories>
+        <category>编程学习笔记</category>
+      </categories>
+      <tags>
+        <tag>算法导论</tag>
+        <tag>阅读笔记</tag>
       </tags>
   </entry>
 </search>
