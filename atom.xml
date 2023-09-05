@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-09-04T06:15:28.441Z</updated>
+  <updated>2023-09-05T12:42:25.908Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,28 +17,50 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>C语言一些浅薄的认识</title>
+    <link href="http://example.com/2023/09/05/C%E8%AF%AD%E8%A8%80%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/"/>
+    <id>http://example.com/2023/09/05/C%E8%AF%AD%E8%A8%80%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/</id>
+    <published>2023-09-05T12:39:59.000Z</published>
+    <updated>2023-09-05T12:42:25.908Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>按照惯例先写前言，这是c语言的自我的一个检讨和梳理，仅代表自己浅薄的认识，内容只到结构体。如果想要有全面客观的了解建议看书籍《C primer plus》这本书，最好英文版。</p><span id="more"></span><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="在C语言之前的感觉"><a href="#在C语言之前的感觉" class="headerlink" title="在C语言之前的感觉"></a>在C语言之前的感觉</h2><p>从0到1到电脑，硬件的底层逻辑是简单电路到数字电路的实现，通过高电压表示1，低电压表示0，来实现二进制的运算和逻辑操作。<br>现在把视野从微观的电路实现脱离，来看看现在计算机的主要组成部分，硬件的组成就是I&#x2F;O设备<del>（输入，输出）</del>，计算<del>（运算，控制）</del>，存储。其中计算是核心，特别是CPU。<br>现在我们有了硬件，如何让硬件发挥功效，以及搭建软件的生态的底层，需要计算机操作系统的统筹，来给计算机注入灵活。<br>操作系统和硬件cpu的对话，可以让cpu发出各种指令，在物理层面实现各种结果。<br>之后视角转向我们的编程语言，cpu层面的机器语言，抽象出来是汇编语言，抽象出来是高级语言，高级语言分为面向过程的POP和面向对象的OOP。<br>而C语言是高级语言当中，唯一的POP，拥有仅次于机器语言，汇编语言的最高效率，是编写其他面向对象语言OOP的编程语言的母亲。</p><h2 id="C语言基础语法的感觉"><a href="#C语言基础语法的感觉" class="headerlink" title="C语言基础语法的感觉"></a>C语言基础语法的感觉</h2><p>面向过程重要的是开始和结束，在初学c语言的时候main函数进入,retrun 0结尾，就是一张一合的黑箱。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//this is other demo.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这个感觉贯穿了c语言的始终，是思考的open与close。<br>在编写c语言的时候，始终和内存紧密相连，变量在数据中的存储，所占的字节都是RAM的空间。如果是数组就要遵循back to back的原则，拥有一块完整的index索引。<br>从位到字节，从字节到变量，其本质只是被抽象提炼，可以逐步下放。<br>以下方demo为例</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> c = <span class="number">127</span>;    </span><br><span class="line">c = c + <span class="number">1</span>;   </span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, c);<span class="comment">//结果输出-128</span></span><br></pre></td></tr></table></figure><p>输出-128是因为在位数上从0111 1111变成了1111 1111。<br>如果不了解基本位运算就无法解释，两者的连接关系。从数字电路的0，1逻辑运算，伴随的机器语言，汇编语言，到C语言，联系始终没有断掉，你依然可以使用这种独特的计算机写法。<br>如果熟练使用位运算，在某些方面可能会有奇效，比如&lt;&lt;，&gt;&gt;，|，^,&amp;,这些都是计算机底层的运算逻辑。写代码不能忽视计算机的整体，一直体现在高级语言当中，是统一的。<br>变量当中会进行自动的转换，char(1 byte),short(2 byte)-&gt;int(4 byte)-&gt;unsgined int(4 byte)-&gt;long(8 byte)-&gt;double(8 byte)&lt;-float(4 byte)<br>char和short在运算当中会转换为int,float在运算中会转换为double。<br>只有因为精度的问题，我们才会使用强制转换。<br>比如double &#x3D; int&#x2F;float 和 double &#x3D; int&#x2F;int相比保留了小数的精度，都是由变量在内存RAM的存储过程中所决定生效的机制。从基础电路一直延续到C，是底层原理决定的上层的应用。 </p><p>变量之后就是顺序，选择，循环这三种不同的逻辑形式，构成了编程语言的逻辑表达。<br>其中循环是最为重要的部分，for,while default,break中断循环，continue加速循环，return终结一切。</p><p>此外，在表达的过程当中，还要考虑人们的语言问题就转换成编程语言的编码问题，国际化常用UTF-8，中国常用GBK。都是底层存储的原因，具体可以自己比较看看ASCII码128个字符是多么的有限。</p><h2 id="C语言高级特性的感觉"><a href="#C语言高级特性的感觉" class="headerlink" title="C语言高级特性的感觉"></a>C语言高级特性的感觉</h2><p>函数是特定任务的独立代码单元，能够减轻优化代码量，进行一定程度的抽象。<br>有了函数的存在，程序入口的main函数才能成为最简洁的存在，真正的main函数是应该一眼就能看完，剩下的所有都应该交给抽象的函数去处理。如下图的例子。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">run</span><span class="params">()</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    run();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">run()&#123;</span><br><span class="line">    <span class="comment">//其他运行的函数。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这才是简洁的存在，抽象之后的干净，有了函数之后，就要考虑变量的传入，分为值传入和地址传入，这又要考虑内存的存在，引出指针来指向内存的修改是完整的进去，而如果是值则是粘贴复制。<br>函数还有的作用就是自己调用自己的递归，具体的实现是函数调用的原理是一个Stack，当然这个Stack是由限制的，如果过多的调用，就会撑爆这个函数调用栈，从而出现stack overflow的错误。<br>指针作为一种C语言的灵魂，赋予了C语言强大的功能，如同人的影子，指针代表一种指向，可以指向各种变量，数组，函数等。是直接访问内存的一个直接手段。<br>结构体是面向对象的萌芽，是多个变量的捆绑，需要注意的是结构体在内存当中的存储，取决于变量类型的最大的那个的整数倍。<br>与结构体相对应的是联合体它在内存当中是共用一块空间，取决于联合体当中，变量类型存储空间最大的那块内存空间。<br>在使用结构体的时候常常伴随的typedef来其别名，并且需要编写头文件来声明，.c文件来引用头文件来实现，使用malloc申请返回void无指针类型的空间大小，配合的free释放函数内存的方法，其实把这些组合起来，非常像面向对象，只剩下了呼之欲出。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;按照惯例先写前言，这是c语言的自我的一个检讨和梳理，仅代表自己浅薄的认识，内容只到结构体。如果想要有全面客观的了解建议看书籍《C primer plus》这本书，最好英文版。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="碎碎念" scheme="http://example.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    
+    
+    <category term="碎碎念" scheme="http://example.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    
+    <category term="编程学习笔记" scheme="http://example.com/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="完结" scheme="http://example.com/tags/%E5%AE%8C%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
     <title>基础数据结构的实现和注解</title>
     <link href="http://example.com/2023/09/04/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%92%8C%E6%B3%A8%E8%A7%A3/"/>
     <id>http://example.com/2023/09/04/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%92%8C%E6%B3%A8%E8%A7%A3/</id>
     <published>2023-09-04T06:02:02.000Z</published>
-    <updated>2023-09-04T06:15:28.441Z</updated>
+    <updated>2023-09-05T12:42:50.540Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>数据结构的实现是数据结构整体概念的落实，没有这整一个过程的实践，那么具体的思想就没有了归处，这里主要是参考Frank在讲数据结构课程当中写的实现代码，这里只是作为一个学习demo具体实现记录的分享，希望大佬多多指教。</p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="实现动态数组"><a href="#实现动态数组" class="headerlink" title="实现动态数组"></a>实现动态数组</h2><h3 id="C语言面向过程实现"><a href="#C语言面向过程实现" class="headerlink" title="C语言面向过程实现"></a>C语言面向过程实现</h3><h3 id="Java语言面向对象实现"><a href="#Java语言面向对象实现" class="headerlink" title="Java语言面向对象实现"></a>Java语言面向对象实现</h3>]]></content>
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>数据结构的实现是数据结构整体概念的落实，没有这整一个过程的实践，那么具体的思想就没有了归处，这里主要是参考Frank在讲数据结构课程当中写的实现代码，这里只是作为一个学习demo具体实现记录的分享，希望大佬多多指教。</p><span id="more"></span><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="实现动态数组"><a href="#实现动态数组" class="headerlink" title="实现动态数组"></a>实现动态数组</h2><h3 id="C语言面向过程实现"><a href="#C语言面向过程实现" class="headerlink" title="C语言面向过程实现"></a>C语言面向过程实现</h3><h3 id="Java语言面向对象实现"><a href="#Java语言面向对象实现" class="headerlink" title="Java语言面向对象实现"></a>Java语言面向对象实现</h3>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;数据结构的实现是数据结构整体概念的落实，没有这整一个过程的实践，那么具体的思想就没有了归处，这里主要是参考Frank在讲数据结构课程当中写的</summary>
-      
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;数据结构的实现是数据结构整体概念的落实，没有这整一个过程的实践，那么具体的思想就没有了归处，这里主要是参考Frank在讲数据结构课程当中写的实现代码，这里只是作为一个学习demo具体实现记录的分享，希望大佬多多指教。&lt;/p&gt;</summary>
     
     
     
     <category term="数据结构" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     
-    <category term="数据结构" scheme="http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
     <category term="编程学习笔记" scheme="http://example.com/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="数据结构" scheme="http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     <category term="更新中" scheme="http://example.com/tags/%E6%9B%B4%E6%96%B0%E4%B8%AD/"/>
     
@@ -49,7 +71,7 @@
     <link href="http://example.com/2023/08/29/%E8%81%8A%E8%81%8A%E8%87%AA%E5%B7%B1%E5%AF%B9%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E6%84%9F%E8%A7%89/"/>
     <id>http://example.com/2023/08/29/%E8%81%8A%E8%81%8A%E8%87%AA%E5%B7%B1%E5%AF%B9%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E6%84%9F%E8%A7%89/</id>
     <published>2023-08-29T04:41:38.000Z</published>
-    <updated>2023-09-04T06:15:20.615Z</updated>
+    <updated>2023-09-05T12:41:25.358Z</updated>
     
     <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>按照惯例，先写前言，这里只是谈一下数据结构的具体感觉，没有具体的实现过程，可能我后续会添加，看我水平，现在能力我自认确实拿不出手。</p><span id="more"></span><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>马上也要到毕业的时候了，现在对数据结构来建立一个总的认识，是再好不过的一次实践。<br>首先数据结构是发现的过程，而算法则是训练的过程<del>（不是自己原创，通过前辈分享的经验得到）</del>，它广泛存在于日常生活当中，我们人类的组织结构可以用Tree来打比方，人与人之间的交际网络可以用Graph来表示，丢垃圾倒垃圾可以用Stack来表示，排队买东西可以用Queue来表示，就连我们班级坐的位置都可以使用二维的Array来表示，数据结构和日常是贴近的，符合直觉和数学的。<br>是因为计算机越来越贴近生活，所需要的模型就会越贴近实际，这里有种形而上实现的感觉。<br>所以我们从底层认识数据结构，才符合常识，所有的程序都是有其硬件的支撑。<br>换成数据结构，就是数据结构是计算机中存储，组织数据的方式。<br>三个关键词，存储，组织<del>(就是CRUD)</del>，数据。<br>把有意义的数据组织起来合理的存储到系统当中去，那么系统当中是啥，是硬件的内存条，它的空间是有限的，是有RAM特性的随机存储的。在这里最基础的单位是位bit，8个bit合成一个byte，4个byte合成32bit，也就是int32，32位操作系统。64位操作系统就是8个byte，64bit。<br>不难看出空间的有限，所以会有一个标准来评判，提升空间的利用率。一个是空间复杂度，一个是时间复杂度。这里就不具体分析哪一个数据结构的复杂度了。一般很少使用空间复杂度，但是时间是和我们现实当中同步的，我们更看重时间复杂度，而且这确实更容易量化。<br>台子就这么搭建好了，一个有限的空间，32位或则64位的操作系统。<br>数据结构出场了，第一个上来的是静态数组static array，它在内存当中遵循back to back原则。也就是byte连续，是一个固定的顺序，因此有索引index，可以很方便的读取，但是空间有限，这个时候就引出了动态数组，动态数组采用了一个非常聪明的扩展静态数组的方法，成倍的扩展，成倍的索要空间，这里就如同这样的例子arr[3]&#x3D;{1,2,3}变为arr[6]&#x3D;{1,2,3,4,5,6}这里添加数据的时间复杂度从头到尾为:O(n),O(1),O(1),O(n),O(1),O(1)。如果进行衍生就会得到这样的公式(nO(1)+O(n))&#x2F;(n+1)&#x3D;O(1),好像有个专门的术语我忘了，这里就不细嗦说了。总而言之就是让动态数组的效率和静态数组别无二致。很吊。<br>第二个就是链表，链表就要提系统内存当中的地址了，起始数组也有地址，是首地址，所以很麻烦，数组如果把首元素删除，那么第二个元素就是第一个，第三个元素就是第二个，所以时间复杂度是O(n)，这是back to back的特性所致。<br>而链表就是捡一些废弃的小垃圾，一个指一个，也就是一个value，一个指针next，这是简单的Linked list。我需要指出一个非常好玩的就是Doubly linked list双向链表，前面是指针pre，中间是value，后面是指针next，这个有个非常直观的例子就是浏览器的前进和后退，音乐播放器的前进和后退。直观，符合数学，高效，简洁，很美。<br>之后再聊聊哈希Hash，哈希是一种加密解密的感觉，一种密码学的感觉，这种高级特工的神秘感，很重要，这种感觉体现在它的形式，key-value也就是键值对，加密在key-&gt;value，value-&gt;key中的-&gt;这个过程就是解密和加密的过程。这里时间复杂度非常高效，平均情况下CRUD全都是o(1),可以说是梦中数据结构，但是有一点就是会发生相同数据的情况，也就是可能会产生哈希碰撞。也就是密码学不再一一对应了，key-value失效了。这里介绍一个简单的处理方式，就是通过碰撞的两个的后面再添加一个链表就行了，前面是value值，后面是指向访问的人的key的指针，就行了。<br>这里举一个极端的案例，也就是我的哈希表全部指向同一个，然后密码学加密和没加密一样，那不就成为了一个单向链表Linked list么？是不是，所以说好玩。<br>接下来聊聊，Stack栈和Queue队列，模型很简单，可以说名字就表示了模型的由来，这里稍微想象一下就行了，毕竟我始终聊的是感觉，感觉不需要太理性。Stack先进后出，Queue先进先出。代码实现一般是Stack用array，Queue用Linked list。<br>就是下来就是聊树Tree和图Graph。<br>首先需要明确的是，树是一种特殊的图。用来表是现实当中的层级。而图则是表现现实当中的关系。树有根的的概念，这一点可以直接从开源系统Linux当中看的很清楚&#x2F;root，从根节点出发把所有的文件安排的都非常妥当，这里要提一个特殊的树，它在时间复杂度上有的O(logn)的好成绩，就是平衡二叉树AVL，可以说来自数学当中的二分查找，这里用到了编程。而图可以分为有向图，无向图，这里就不细嗦了。<br>以上可以算作全部内容了，感觉到此也就散了。</p>]]></content>
     
@@ -61,11 +83,11 @@
     <category term="碎碎念" scheme="http://example.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
     
     
-    <category term="完结" scheme="http://example.com/tags/%E5%AE%8C%E7%BB%93/"/>
+    <category term="碎碎念" scheme="http://example.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
     
     <category term="编程学习笔记" scheme="http://example.com/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
-    <category term="碎碎念" scheme="http://example.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    <category term="完结" scheme="http://example.com/tags/%E5%AE%8C%E7%BB%93/"/>
     
   </entry>
   
@@ -94,9 +116,9 @@
     <category term="编程学习笔记" scheme="http://example.com/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Git" scheme="http://example.com/tags/Git/"/>
-    
     <category term="完结" scheme="http://example.com/tags/%E5%AE%8C%E7%BB%93/"/>
+    
+    <category term="Git" scheme="http://example.com/tags/Git/"/>
     
   </entry>
   
@@ -117,9 +139,9 @@
     <category term="编程学习笔记" scheme="http://example.com/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Git" scheme="http://example.com/tags/Git/"/>
-    
     <category term="完结" scheme="http://example.com/tags/%E5%AE%8C%E7%BB%93/"/>
+    
+    <category term="Git" scheme="http://example.com/tags/Git/"/>
     
   </entry>
   
