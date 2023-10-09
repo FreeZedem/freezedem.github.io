@@ -58,6 +58,15 @@
 
 <p>前面说过Set是Map的外壳，Map映射并不受制于Collection是一个独立的体系。主要是key键，Value值对来组成的映射关系。</p>
 <p>Stream流是对于上面集合调用的一种综合写法，可以让代码写的更加优雅，简洁，相当于工厂的流水线有着自己格式。</p>
+<p>I&#x2F;O流存在的原因是扩展程序编程范围到了文件系统，去读取操纵操作系统上的文件系统，I&#x2F;O流是通过内存来到存储空间进行流传输的。<br>由于启用流需要关闭，不然文件一直会被占用，在别的方面可能会报错，所以有了便捷的写法try(流 &#x3D; new 流()){}catch{}</p>
+<p>要有流的感觉需要看一个byte一个byte传，还是使用缓存空间很多很多的byte传，用比喻的话就是，水龙头开水是大水还是小水。字节在其中是传输的最基础单位。</p>
+<p>字节流，InputStream,OutputStream<br>字符流 FileReader FileWrite（纯文本操作）<br>文件流（文件夹） File FileInputStream FileOutputStream</p>
+<p>暂时缓存区存在的原因，归根于底层硬件，因为硬盘的读取速度和内存相比是满的，而我们程序操纵内存太快了完成，需要等硬盘到内存的传输，所以需要加大流量，使用缓冲流，概念因此产生。</p>
+<p>缓存流的的类：BufferedInputStream（包InputStream） BufferedOutputStream（包OutputStream） BufferedReader（包FileReader） BufferedWriter（包FileWriter）</p>
+<p>缓存流和前文的HashSet底层调用HashMap一样，它的底层调用用本的流，加上了缓冲区，是一种装饰者模式。</p>
+<p>I&#x2F;O流本身自能够单向的流一遍，不能倒回去流，缓冲流另外的一个好处，就是缓冲区的存在，使着倒回去流存在。具体的代码实现mark()（标记）,reset()（回溯到mark标记处）</p>
+<p>常见的流当中，最主要的是Scanner（System.in）控制台的输入流和System.out.printf控制台的输出流。</p>
+<p>在类的对象当中，一个类如果支持对象流的输入和输出，它的底层代码需要实现对象序列化流的接口SeriaLizable，如果在类当中，不想某个类的属性被序列化，需要使用transient关键字来避免。</p>
 ]]></content>
       <categories>
         <category>碎碎念</category>
