@@ -225,7 +225,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-10-11 13:14:26 / 修改时间：13:18:32" itemprop="dateCreated datePublished" datetime="2023-10-11T13:14:26+08:00">2023-10-11</time>
+              <time title="创建时间：2023-10-11 13:14:26 / 修改时间：13:22:03" itemprop="dateCreated datePublished" datetime="2023-10-11T13:14:26+08:00">2023-10-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,30 +272,116 @@
           <h1 id="多线程与反射"><a href="#多线程与反射" class="headerlink" title="多线程与反射"></a>多线程与反射</h1><h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><h3 id="线程的创建和启动"><a href="#线程的创建和启动" class="headerlink" title="线程的创建和启动"></a>线程的创建和启动</h3><p>说起多线程就要说起进程和线程的概念，每一次运行程序，进程就会出现，线程是进程的一部分。</p>
 <p>进程是操作系统分配资源的基本单位，进程是程序执行的实体，每一个进程都是一个应用程序，进程是拥有资源和独立运行的最小单位，也是程序执行的最小单位。</p>
 <p>需要多线程技术，就是为了避免多进程的之间通信的问题，多线程在一个进程内享有资源共读上下文，比额外访问另外一个进程要好太多了。</p>
-<p><strong>一个进程可以有多个线程，线程是程序执行中一个单一的顺序控制流程，现在线程才是程序执行流的最小单元，各个线程之间共享程序的内存空间（也就是所在进程的内存空间），上下文切换速度也高于进程。</strong></p>
-<p>下面是一个多线程，同时执行的例子，使用的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Thread</span>(()-&gt;&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            System.*out*.println(<span class="string">&quot;我是线程1&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Thread</span>(()-&gt;&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            System.*out*.println(<span class="string">&quot;我是线程2&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/10/11/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8F%8D%E5%B0%84/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
-<p>把线程的观念，带入编程当中，那么main就是一个进程的主线程。</p>
-<p>如果我们额外new 一个全新的线程，那么它是从主线程当中分支出来一起执行的一个个线程，是一次归属于同一个进程。</p>
-<p>在Java当中线程有五个状态，新建（new），就绪&#x2F;可运行（runnable），运行中（running），休眠（Blocked&#x2F;Sleeping），终止（Terminated）。</p>
-<p>我们调用start方法并不代表立刻马上的进入运行状态，你也需要看底层的硬件是不是允许的，它会进入Runnable状态，等待CPU调用完毕别的，来进入Running状态。</p>
-<p>如果我们遇到类似与Scanner这种需要交互的输入流时，当前线程往往会休眠，CPU去干别的事情去了。</p>
-<p>当我们程序的线程跑完的时候，程序运行到结束，或则出现了意外，报错或则是异常，线程就会终止。</p>
-<h3 id="线程的休眠和中断"><a href="#线程的休眠和中断" class="headerlink" title="线程的休眠和中断"></a>线程的休眠和中断</h3><p>在休眠和中断当中，很明显的体现了一个具体的框架，就是</p>
-<p>New-&gt;Runnable-&gt;Running-&gt;Blocked&#x2F;Sleep-&gt;Running-&gt;Blocked&#x2F;Sleep-&gt;Running-&gt;Blocked&#x2F;Sleep-&gt;…..-&gt;Running-&gt;Terminated。</p>
-<p>具体的程序例子如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">    System.*out*.println(Thread.*currentThread*().getName()+<span class="string">&quot;线程启动&quot;</span>);</span><br><span class="line">    System.*out*.println(<span class="string">&quot;T&quot;</span>);</span><br><span class="line">    Thread.*sleep*(<span class="number">1000</span>);</span><br><span class="line">    System.*out*.println(<span class="string">&quot;E&quot;</span>);</span><br><span class="line">    Thread.*sleep*(<span class="number">1000</span>);</span><br><span class="line">    System.*out*.println(<span class="string">&quot;M&quot;</span>);</span><br><span class="line">    Thread.*sleep*(<span class="number">1000</span>);</span><br><span class="line">    System.*out*.println(<span class="string">&quot;P&quot;</span>);</span><br><span class="line">    Thread.*sleep*(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
-<p>值得一提的是，使用stop()（已经被java建议废止）会强行中止，这里会出现一个问题，打个比喻，你公司停电，你代码没保存和公司停电前有通知，让你保存完代码再下班，这就是InterruptedException异常的作用，用来捕捉打了Interrupted标记的线程，并让其下线。</p>
-<p>下面是示例代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(()-&gt;&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName());</span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span> (Thread.currentThread().isInterrupted())&#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;我被中断了，切换到下一个循环&quot;</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            Thread.interrupted();<span class="comment">//让Interrupted 复原成为原来的false。</span></span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span> (Thread.currentThread().isInterrupted())&#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;我被中断了&quot;</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;线程结束&quot;</span>);</span><br><span class="line">        &#125;,<span class="string">&quot;我是Interrupted检测线程&quot;</span>);</span><br><span class="line">        thread1.start();</span><br><span class="line">        System.out.println(Thread.currentThread().getName());</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        thread1.interrupt();</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        thread1.interrupt();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/07/JavaSE%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/">
 
-<p>下面是使用Thread当中的resume()恢复线程方法和suspend()悬挂线程的方法。（这两个方法已经被java所弃用，这里使用来做演示）</p>
-<p>下面是示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">       <span class="type">Thread</span> <span class="variable">thread1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(()-&gt;&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;我停止了&quot;</span>);</span><br><span class="line">           Thread.currentThread().suspend();</span><br><span class="line">           System.out.println(<span class="string">&quot;我被线程2恢复了&quot;</span>);</span><br><span class="line">       &#125;);</span><br><span class="line">       <span class="type">Thread</span> <span class="variable">thread2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(()-&gt;&#123;</span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">           &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">               <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">           &#125;</span><br><span class="line">           System.out.println(<span class="string">&quot;恢复线程1&quot;</span>);</span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">           &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">               <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">           &#125;</span><br><span class="line">           thread1.resume();</span><br><span class="line">       &#125;);</span><br><span class="line">       thread1.start();</span><br><span class="line">       thread2.start();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/miku_img.png">
+      <meta itemprop="name" content="Freezelook">
+      <meta itemprop="description" content="头像是我喜欢的miku，不定时更新一下文章，写一些心得和教程。">
+    </span>
 
-<h3 id="线程的优先级"><a href="#线程的优先级" class="headerlink" title="线程的优先级"></a>线程的优先级</h3>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽博的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/09/07/JavaSE%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/" class="post-title-link" itemprop="url">JavaSE一些浅薄的认识</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-09-07 10:57:26" itemprop="dateCreated datePublished" datetime="2023-09-07T10:57:26+08:00">2023-09-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-11 13:21:20" itemprop="dateModified" datetime="2023-10-11T13:21:20+08:00">2023-10-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">编程学习笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/09/07/JavaSE%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/" class="post-meta-item leancloud_visitors" data-flag-title="JavaSE一些浅薄的认识" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/09/07/JavaSE%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/09/07/JavaSE%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>按照惯例先写前言，JavaSE是Java当中基础的部分这里针对JavaSE的知识进行一个整体的构建，以便有一个大致像样的模型可以看待问题，只是浅薄的认识，可能有误，具体的请看JDK的源码或则官方文档来进一步了解Java语言。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/09/07/JavaSE%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -495,108 +581,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/09/05/C%E8%AF%AD%E8%A8%80%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/07/JavaSE%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/miku_img.png">
-      <meta itemprop="name" content="Freezelook">
-      <meta itemprop="description" content="头像是我喜欢的miku，不定时更新一下文章，写一些心得和教程。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="泽博的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/07/JavaSE%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/" class="post-title-link" itemprop="url">JavaSE一些浅薄的认识</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-09-07 10:57:26" itemprop="dateCreated datePublished" datetime="2023-09-07T10:57:26+08:00">2023-09-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-11 13:18:00" itemprop="dateModified" datetime="2023-10-11T13:18:00+08:00">2023-10-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">编程学习笔记</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2023/09/07/JavaSE%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/" class="post-meta-item leancloud_visitors" data-flag-title="JavaSE一些浅薄的认识" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2023/09/07/JavaSE%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/09/07/JavaSE%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>按照惯例先写前言，JavaSE是Java当中基础的部分这里针对JavaSE的知识进行一个整体的构建，以便有一个大致像样的模型可以看待问题，只是浅薄的认识，可能有误，具体的请看JDK的源码或则官方文档来进一步了解Java语言。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/09/07/JavaSE%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
