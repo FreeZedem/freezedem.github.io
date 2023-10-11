@@ -20,21 +20,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"auto","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言按照惯例先写前言，这是c语言的自我的一个检讨和梳理，仅代表自己浅薄的认识，内容只到结构体。如果想要有全面客观的了解建议看书籍《C primer plus》这本书，最好英文版。">
+  <meta name="description" content="多线程与反射多线程线程的创建和启动说起多线程就要说起进程和线程的概念，每一次运行程序，进程就会出现，线程是进程的一部分。 进程是操作系统分配资源的基本单位，进程是程序执行的实体，每一个进程都是一个应用程序，进程是拥有资源和独立运行的最小单位，也是程序执行的最小单位。 需要多线程技术，就是为了避免多进程的之间通信的问题，多线程在一个进程内享有资源共读上下文，比额外访问另外一个进程要好太多了。 一个进">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C语言一些浅薄的认识">
-<meta property="og:url" content="http://example.com/2023/09/05/C%E8%AF%AD%E8%A8%80%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/index.html">
+<meta property="og:title" content="Java多线程与反射">
+<meta property="og:url" content="http://example.com/2023/10/11/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8F%8D%E5%B0%84/index.html">
 <meta property="og:site_name" content="泽博的个人博客">
-<meta property="og:description" content="前言按照惯例先写前言，这是c语言的自我的一个检讨和梳理，仅代表自己浅薄的认识，内容只到结构体。如果想要有全面客观的了解建议看书籍《C primer plus》这本书，最好英文版。">
+<meta property="og:description" content="多线程与反射多线程线程的创建和启动说起多线程就要说起进程和线程的概念，每一次运行程序，进程就会出现，线程是进程的一部分。 进程是操作系统分配资源的基本单位，进程是程序执行的实体，每一个进程都是一个应用程序，进程是拥有资源和独立运行的最小单位，也是程序执行的最小单位。 需要多线程技术，就是为了避免多进程的之间通信的问题，多线程在一个进程内享有资源共读上下文，比额外访问另外一个进程要好太多了。 一个进">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-05T12:39:59.000Z">
-<meta property="article:modified_time" content="2023-10-11T05:18:03.186Z">
+<meta property="article:published_time" content="2023-10-11T05:14:26.000Z">
+<meta property="article:modified_time" content="2023-10-11T05:18:32.268Z">
 <meta property="article:author" content="Freezelook">
 <meta property="article:tag" content="编程学习笔记">
-<meta property="article:tag" content="完结">
+<meta property="article:tag" content="更新中">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2023/09/05/C%E8%AF%AD%E8%A8%80%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/">
+<link rel="canonical" href="http://example.com/2023/10/11/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8F%8D%E5%B0%84/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>C语言一些浅薄的认识 | 泽博的个人博客</title>
+  <title>Java多线程与反射 | 泽博的个人博客</title>
   
 
 
@@ -205,7 +205,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/05/C%E8%AF%AD%E8%A8%80%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/11/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8F%8D%E5%B0%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/miku_img.png">
@@ -218,7 +218,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          C语言一些浅薄的认识
+          Java多线程与反射
         </h1>
 
         <div class="post-meta">
@@ -227,16 +227,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2023-09-05 20:39:59" itemprop="dateCreated datePublished" datetime="2023-09-05T20:39:59+08:00">2023-09-05</time>
+              <time title="创建时间：2023-10-11 13:14:26 / 修改时间：13:18:32" itemprop="dateCreated datePublished" datetime="2023-10-11T13:14:26+08:00">2023-10-11</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-11 13:18:03" itemprop="dateModified" datetime="2023-10-11T13:18:03+08:00">2023-10-11</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -248,7 +242,7 @@
             </span>
 
           
-            <span id="/2023/09/05/C%E8%AF%AD%E8%A8%80%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/" class="post-meta-item leancloud_visitors" data-flag-title="C语言一些浅薄的认识" title="阅读次数">
+            <span id="/2023/10/11/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8F%8D%E5%B0%84/" class="post-meta-item leancloud_visitors" data-flag-title="Java多线程与反射" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -270,8 +264,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2023/09/05/C%E8%AF%AD%E8%A8%80%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/09/05/C%E8%AF%AD%E8%A8%80%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/" itemprop="commentCount"></span>
+    <a title="valine" href="/2023/10/11/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8F%8D%E5%B0%84/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/10/11/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8F%8D%E5%B0%84/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -286,20 +280,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>按照惯例先写前言，这是c语言的自我的一个检讨和梳理，仅代表自己浅薄的认识，内容只到结构体。如果想要有全面客观的了解建议看书籍《C primer plus》这本书，最好英文版。</p>
-<span id="more"></span>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="在C语言之前的感觉"><a href="#在C语言之前的感觉" class="headerlink" title="在C语言之前的感觉"></a>在C语言之前的感觉</h2><p>从0到1到电脑，硬件的底层逻辑是简单电路到数字电路的实现，通过高电压表示1，低电压表示0，来实现二进制的运算和逻辑操作。<br>现在把视野从微观的电路实现脱离，来看看现在计算机的主要组成部分，硬件的组成就是I&#x2F;O设备<del>（输入，输出）</del>，计算<del>（运算，控制）</del>，存储。其中计算是核心，特别是CPU。<br>现在我们有了硬件，如何让硬件发挥功效，以及搭建软件的生态的底层，需要计算机操作系统的统筹，来给计算机注入灵活。<br>操作系统和硬件cpu的对话，可以让cpu发出各种指令，在物理层面实现各种结果。<br>之后视角转向我们的编程语言，cpu层面的机器语言，抽象出来是汇编语言，抽象出来是高级语言，高级语言分为面向过程的POP和面向对象的OOP。<br>而C语言是高级语言当中，唯一的POP，拥有仅次于机器语言，汇编语言的最高效率，是编写其他面向对象语言OOP的编程语言的母亲。</p>
-<h2 id="C语言基础语法的感觉"><a href="#C语言基础语法的感觉" class="headerlink" title="C语言基础语法的感觉"></a>C语言基础语法的感觉</h2><p>面向过程重要的是开始和结束，在初学c语言的时候main函数进入,retrun 0结尾，就是一张一合的黑箱。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//this is other demo.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个感觉贯穿了c语言的始终，是思考的open与close。<br>在编写c语言的时候，始终和内存紧密相连，变量在数据中的存储，所占的字节都是RAM的空间。如果是数组就要遵循back to back的原则，拥有一块完整的index索引。<br>从位到字节，从字节到变量，其本质只是被抽象提炼，可以逐步下放。<br>以下方demo为例</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> c = <span class="number">127</span>;    </span><br><span class="line">c = c + <span class="number">1</span>;   </span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, c);<span class="comment">//结果输出-128</span></span><br></pre></td></tr></table></figure>
-<p>输出-128是因为在位数上从0111 1111变成了1111 1111。<br>如果不了解基本位运算就无法解释，两者的连接关系。从数字电路的0，1逻辑运算，伴随的机器语言，汇编语言，到C语言，联系始终没有断掉，你依然可以使用这种独特的计算机写法。<br>如果熟练使用位运算，在某些方面可能会有奇效，比如&lt;&lt;，&gt;&gt;，|，^,&amp;,这些都是计算机底层的运算逻辑。写代码不能忽视计算机的整体，一直体现在高级语言当中，是统一的。<br>变量当中会进行自动的转换，char(1 byte),short(2 byte)-&gt;int(4 byte)-&gt;unsgined int(4 byte)-&gt;long(8 byte)-&gt;double(8 byte)&lt;-float(4 byte)<br>char和short在运算当中会转换为int,float在运算中会转换为double。<br>只有因为精度的问题，我们才会使用强制转换。<br>比如double &#x3D; int&#x2F;float 和 double &#x3D; int&#x2F;int相比保留了小数的精度，都是由变量在内存RAM的存储过程中所决定生效的机制。从基础电路一直延续到C，是底层原理决定的上层的应用。 </p>
-<p>变量之后就是顺序，选择，循环这三种不同的逻辑形式，构成了编程语言的逻辑表达。<br>其中循环是最为重要的部分，for,while default,break中断循环，continue加速循环，return终结一切。</p>
-<p>此外，在表达的过程当中，还要考虑人们的语言问题就转换成编程语言的编码问题，国际化常用UTF-8，中国常用GBK。都是底层存储的原因，具体可以自己比较看看ASCII码128个字符是多么的有限。</p>
-<h2 id="C语言高级特性的感觉"><a href="#C语言高级特性的感觉" class="headerlink" title="C语言高级特性的感觉"></a>C语言高级特性的感觉</h2><p>函数是特定任务的独立代码单元，能够减轻优化代码量，进行一定程度的抽象。<br>有了函数的存在，程序入口的main函数才能成为最简洁的存在，真正的main函数是应该一眼就能看完，剩下的所有都应该交给抽象的函数去处理。如下图的例子。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">run</span><span class="params">()</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    run();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">run()&#123;</span><br><span class="line">    <span class="comment">//其他运行的函数。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这才是简洁的存在，抽象之后的干净，有了函数之后，就要考虑变量的传入，分为值传入和地址传入，这又要考虑内存的存在，引出指针来指向内存的修改是完整的进去，而如果是值则是粘贴复制。<br>函数还有的作用就是自己调用自己的递归，具体的实现是函数调用的原理是一个Stack，当然这个Stack是由限制的，如果过多的调用，就会撑爆这个函数调用栈，从而出现stack overflow的错误。<br>指针作为一种C语言的灵魂，赋予了C语言强大的功能，如同人的影子，指针代表一种指向，可以指向各种变量，数组，函数等。是直接访问内存的一个直接手段。<br>结构体是面向对象的萌芽，是多个变量的捆绑，需要注意的是结构体在内存当中的存储，取决于变量类型的最大的那个的整数倍。<br>与结构体相对应的是联合体它在内存当中是共用一块空间，取决于联合体当中，变量类型存储空间最大的那块内存空间。<br>在使用结构体的时候常常伴随的typedef来其别名，并且需要编写头文件来声明，.c文件来引用头文件来实现，使用malloc申请返回void无指针类型的空间大小，配合的free释放函数内存的方法，其实把这些组合起来，非常像面向对象，只剩下了呼之欲出。</p>
+        <h1 id="多线程与反射"><a href="#多线程与反射" class="headerlink" title="多线程与反射"></a>多线程与反射</h1><h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><h3 id="线程的创建和启动"><a href="#线程的创建和启动" class="headerlink" title="线程的创建和启动"></a>线程的创建和启动</h3><p>说起多线程就要说起进程和线程的概念，每一次运行程序，进程就会出现，线程是进程的一部分。</p>
+<p>进程是操作系统分配资源的基本单位，进程是程序执行的实体，每一个进程都是一个应用程序，进程是拥有资源和独立运行的最小单位，也是程序执行的最小单位。</p>
+<p>需要多线程技术，就是为了避免多进程的之间通信的问题，多线程在一个进程内享有资源共读上下文，比额外访问另外一个进程要好太多了。</p>
+<p><strong>一个进程可以有多个线程，线程是程序执行中一个单一的顺序控制流程，现在线程才是程序执行流的最小单元，各个线程之间共享程序的内存空间（也就是所在进程的内存空间），上下文切换速度也高于进程。</strong></p>
+<p>下面是一个多线程，同时执行的例子，使用的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Thread</span>(()-&gt;&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            System.*out*.println(<span class="string">&quot;我是线程1&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Thread</span>(()-&gt;&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            System.*out*.println(<span class="string">&quot;我是线程2&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>把线程的观念，带入编程当中，那么main就是一个进程的主线程。</p>
+<p>如果我们额外new 一个全新的线程，那么它是从主线程当中分支出来一起执行的一个个线程，是一次归属于同一个进程。</p>
+<p>在Java当中线程有五个状态，新建（new），就绪&#x2F;可运行（runnable），运行中（running），休眠（Blocked&#x2F;Sleeping），终止（Terminated）。</p>
+<p>我们调用start方法并不代表立刻马上的进入运行状态，你也需要看底层的硬件是不是允许的，它会进入Runnable状态，等待CPU调用完毕别的，来进入Running状态。</p>
+<p>如果我们遇到类似与Scanner这种需要交互的输入流时，当前线程往往会休眠，CPU去干别的事情去了。</p>
+<p>当我们程序的线程跑完的时候，程序运行到结束，或则出现了意外，报错或则是异常，线程就会终止。</p>
+<h3 id="线程的休眠和中断"><a href="#线程的休眠和中断" class="headerlink" title="线程的休眠和中断"></a>线程的休眠和中断</h3><p>在休眠和中断当中，很明显的体现了一个具体的框架，就是</p>
+<p>New-&gt;Runnable-&gt;Running-&gt;Blocked&#x2F;Sleep-&gt;Running-&gt;Blocked&#x2F;Sleep-&gt;Running-&gt;Blocked&#x2F;Sleep-&gt;…..-&gt;Running-&gt;Terminated。</p>
+<p>具体的程序例子如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">    System.*out*.println(Thread.*currentThread*().getName()+<span class="string">&quot;线程启动&quot;</span>);</span><br><span class="line">    System.*out*.println(<span class="string">&quot;T&quot;</span>);</span><br><span class="line">    Thread.*sleep*(<span class="number">1000</span>);</span><br><span class="line">    System.*out*.println(<span class="string">&quot;E&quot;</span>);</span><br><span class="line">    Thread.*sleep*(<span class="number">1000</span>);</span><br><span class="line">    System.*out*.println(<span class="string">&quot;M&quot;</span>);</span><br><span class="line">    Thread.*sleep*(<span class="number">1000</span>);</span><br><span class="line">    System.*out*.println(<span class="string">&quot;P&quot;</span>);</span><br><span class="line">    Thread.*sleep*(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>值得一提的是，使用stop()（已经被java建议废止）会强行中止，这里会出现一个问题，打个比喻，你公司停电，你代码没保存和公司停电前有通知，让你保存完代码再下班，这就是InterruptedException异常的作用，用来捕捉打了Interrupted标记的线程，并让其下线。</p>
+<p>下面是示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(()-&gt;&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName());</span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span> (Thread.currentThread().isInterrupted())&#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;我被中断了，切换到下一个循环&quot;</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            Thread.interrupted();<span class="comment">//让Interrupted 复原成为原来的false。</span></span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span> (Thread.currentThread().isInterrupted())&#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;我被中断了&quot;</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;线程结束&quot;</span>);</span><br><span class="line">        &#125;,<span class="string">&quot;我是Interrupted检测线程&quot;</span>);</span><br><span class="line">        thread1.start();</span><br><span class="line">        System.out.println(Thread.currentThread().getName());</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        thread1.interrupt();</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        thread1.interrupt();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面是使用Thread当中的resume()恢复线程方法和suspend()悬挂线程的方法。（这两个方法已经被java所弃用，这里使用来做演示）</p>
+<p>下面是示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">       <span class="type">Thread</span> <span class="variable">thread1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(()-&gt;&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;我停止了&quot;</span>);</span><br><span class="line">           Thread.currentThread().suspend();</span><br><span class="line">           System.out.println(<span class="string">&quot;我被线程2恢复了&quot;</span>);</span><br><span class="line">       &#125;);</span><br><span class="line">       <span class="type">Thread</span> <span class="variable">thread2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(()-&gt;&#123;</span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">           &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">               <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">           &#125;</span><br><span class="line">           System.out.println(<span class="string">&quot;恢复线程1&quot;</span>);</span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">           &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">               <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">           &#125;</span><br><span class="line">           thread1.resume();</span><br><span class="line">       &#125;);</span><br><span class="line">       thread1.start();</span><br><span class="line">       thread2.start();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="线程的优先级"><a href="#线程的优先级" class="headerlink" title="线程的优先级"></a>线程的优先级</h3>
     </div>
 
     
@@ -314,7 +321,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://example.com/2023/09/05/C%E8%AF%AD%E8%A8%80%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/" title="C语言一些浅薄的认识">http://example.com/2023/09/05/C语言一些浅薄的认识/</a>
+    <a href="http://example.com/2023/10/11/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8F%8D%E5%B0%84/" title="Java多线程与反射">http://example.com/2023/10/11/Java多线程与反射/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -329,7 +336,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 编程学习笔记</a>
-              <a href="/tags/%E5%AE%8C%E7%BB%93/" rel="tag"># 完结</a>
+              <a href="/tags/%E6%9B%B4%E6%96%B0%E4%B8%AD/" rel="tag"># 更新中</a>
           </div>
 
         
@@ -338,13 +345,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/09/04/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%92%8C%E6%B3%A8%E8%A7%A3/" rel="prev" title="基础数据结构的实现和注解">
-      <i class="fa fa-chevron-left"></i> 基础数据结构的实现和注解
+    <a href="/2023/09/07/JavaSE%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/" rel="prev" title="JavaSE一些浅薄的认识">
+      <i class="fa fa-chevron-left"></i> JavaSE一些浅薄的认识
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/09/07/JavaSE%E4%B8%80%E4%BA%9B%E6%B5%85%E8%96%84%E7%9A%84%E8%AE%A4%E8%AF%86/" rel="next" title="JavaSE一些浅薄的认识">
-      JavaSE一些浅薄的认识 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -404,7 +408,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B9%8B%E5%89%8D%E7%9A%84%E6%84%9F%E8%A7%89"><span class="nav-number">2.1.</span> <span class="nav-text">在C语言之前的感觉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%9A%84%E6%84%9F%E8%A7%89"><span class="nav-number">2.2.</span> <span class="nav-text">C语言基础语法的感觉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C%E8%AF%AD%E8%A8%80%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E7%9A%84%E6%84%9F%E8%A7%89"><span class="nav-number">2.3.</span> <span class="nav-text">C语言高级特性的感觉</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8F%8D%E5%B0%84"><span class="nav-number">1.</span> <span class="nav-text">多线程与反射</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%90%AF%E5%8A%A8"><span class="nav-number">1.1.1.</span> <span class="nav-text">线程的创建和启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BC%91%E7%9C%A0%E5%92%8C%E4%B8%AD%E6%96%AD"><span class="nav-number">1.1.2.</span> <span class="nav-text">线程的休眠和中断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">1.1.3.</span> <span class="nav-text">线程的优先级</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
