@@ -106,9 +106,9 @@
     
     <category term="编程学习笔记" scheme="http://example.com/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
-    <category term="数据结构" scheme="http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
     <category term="更新中" scheme="http://example.com/tags/%E6%9B%B4%E6%96%B0%E4%B8%AD/"/>
+    
+    <category term="数据结构" scheme="http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
@@ -233,11 +233,11 @@
     <category term="编程学习笔记" scheme="http://example.com/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="搁置" scheme="http://example.com/tags/%E6%90%81%E7%BD%AE/"/>
-    
     <category term="算法导论" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"/>
     
     <category term="阅读笔记" scheme="http://example.com/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="搁置" scheme="http://example.com/tags/%E6%90%81%E7%BD%AE/"/>
     
   </entry>
   
